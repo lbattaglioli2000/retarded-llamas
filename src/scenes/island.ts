@@ -68,32 +68,32 @@ export const renderIsland = () => {
 const handleLlamaMovement = (event: KeyboardEvent) => {
   switch (event.key) {
     case "w":
-      gameState.players[0].controls.moveForward = true;
+      gameState.localPlayer.controls.moveForward = true;
       break;
     case "s":
-      gameState.players[0].controls.moveBackward = true;
+      gameState.localPlayer.controls.moveBackward = true;
       break;
     case "a":
-      gameState.players[0].controls.moveLeft = true;
+      gameState.localPlayer.controls.moveLeft = true;
       break;
     case "d":
-      gameState.players[0].controls.moveRight = true;
+      gameState.localPlayer.controls.moveRight = true;
       break;
   }
 };
 const handleLlamaStop = (event: KeyboardEvent) => {
   switch (event.key) {
     case "w":
-      gameState.players[0].controls.moveForward = false;
+      gameState.localPlayer.controls.moveForward = false;
       break;
     case "s":
-      gameState.players[0].controls.moveBackward = false;
+      gameState.localPlayer.controls.moveBackward = false;
       break;
     case "a":
-      gameState.players[0].controls.moveLeft = false;
+      gameState.localPlayer.controls.moveLeft = false;
       break;
     case "d":
-      gameState.players[0].controls.moveRight = false;
+      gameState.localPlayer.controls.moveRight = false;
       break;
   }
 };

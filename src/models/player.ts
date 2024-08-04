@@ -1,8 +1,14 @@
 import * as THREE from "three";
 
-class Player {
+export class Player {
     mesh: THREE.Mesh;
     speed: number;
+    controls = {
+        moveForward: false,
+        moveBackward: false,
+        moveLeft: false,
+        moveRight: false,
+    }
 
     constructor(
         mesh: THREE.Mesh,
@@ -29,6 +35,18 @@ class Player {
     }
 
     updateMovement(time: number) {
-        // Update the movement
+        console.log("Updating movement")
+        if (this.controls.moveForward) {
+            this.moveForward();
+        }
+        if (this.controls.moveBackward) {
+            this.moveBackward();
+        }
+        if (this.controls.moveLeft) {
+            this.moveLeft();
+        }
+        if (this.controls.moveRight) {
+            this.moveRight();
+        }
     }
 }

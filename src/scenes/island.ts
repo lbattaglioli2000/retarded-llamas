@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import {Player} from "../models/player";
+import {GameState} from "../state";
 
 const createGround = () => {
   const geometry = new THREE.PlaneGeometry(5, 5);
@@ -19,22 +21,7 @@ const createLlama = () => {
   return llama;
 };
 
-const handleLlamaMovement = (event: KeyboardEvent) => {
-  switch (event.key) {
-    case 'w':
-      // move llama forward
-      break;
-    case 's':
-      // move llama backward
-      break;
-    case 'a':
-      // move llama left
-      break;
-    case 'd':
-      // move llama right
-      break;
-  }
-}
+const gameState = new GameState();
 
 export const renderIsland = () => {
   const width = window.innerWidth,
@@ -54,6 +41,9 @@ export const renderIsland = () => {
   const llama = createLlama();
   scene.add(llama);
 
+  const player = new Player(llama);
+  gameState.players.add(player);
+
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(1366, 768);
   renderer.setAnimationLoop(animate);
@@ -68,9 +58,49 @@ export const renderIsland = () => {
     // mesh.rotation.y = time / 1000;
     // mesh.rotation.z = time / 1000;
 
-    // player.updateMovement(time);
+    player.updateMovement(time);
+
     renderer.render(scene, camera);
   }
 };
 
+const handleLlamaMovement = (event: KeyboardEvent) => {
+  gameState.players.values().next().value.controls.moveForward = false;
+  gameState.players.values().next().value.controls.moveBackward = false;
+  gameState.players.values().next().value.controls.moveLeft = false;
+  gameState.players.values().next().value.controls.moveRight = false;
+
+  switch (event.key) {
+    case 'w':
+      gameState.players.values().next().value.controls.moveForward = true;
+      break;
+    case 's':
+      gameState.players.values().next().value.controls.moveBackward = true;
+      break;
+    case 'a':
+      gameState.players.values().next().value.controls.moveLeft = true;
+      break;
+    case 'd':
+      gameState.players.values().next().value.controls.moveRight = true;
+      break;
+  }
+}
+const handleLlamaStop = (event: KeyboardEvent) => {
+    switch (event.key) {
+        case 'w':
+        gameState.players.values().next().value.controls.moveForward = false;
+        break;
+        case 's':
+        gameState.players.values().next().value.controls.moveBackward = false;
+        break;
+        case 'a':
+        gameState.players.values().next().value.controls.moveLeft = false;
+        break;
+        case 'd':
+        gameState.players.values().next().value.controls.moveRight = false;
+        break;
+    }
+}
+
 window.addEventListener('keydown', handleLlamaMovement);
+window.addEventListener('keyup', handleLlamaStop);

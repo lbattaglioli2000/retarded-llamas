@@ -10,6 +10,7 @@
     "start": "vite"
   },
   "devDependencies": {
+    "@types/three": "^0.167.1",
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
   },

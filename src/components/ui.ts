@@ -11,7 +11,7 @@ export class UI {
 <h4 id='ui-points'>Points: 0</h4>
 <h4 id='ui-health'>Health: 0</h4>
 <h4 id='ui-time'>Time: Infinity</h4>
-<h4 id='ui-movement'>Time: WASD</h4>
+<h4 id='ui-movement'>Direction: WASD</h4>
       `;
     }
 
@@ -29,10 +29,15 @@ export class UI {
     const player = gameState.localPlayer;
 
     points.innerHTML = `${points.innerHTML.split(" ")[0]} ${player.state.getPoints()}`;
-    if (points.innerHTML && health.innerHTML && time.innerHTML) {
-      health.innerHTML = `${health.innerHTML.split(" ")[0]} ${player.state.getHealth()}`;
-      time.innerHTML = `${time.innerHTML.split(" ")[0]} ${player.state.getStateTime()}`;
-    }
+    health.innerHTML = `${health.innerHTML.split(" ")[0]} ${player.state.getHealth()}`;
+    time.innerHTML = `${time.innerHTML.split(" ")[0]} ${player.state.getStateTime()}`;
+
+    let movementValue = "";
+    if (player.controls.moveForward) movementValue += "W";
+    if (player.controls.moveLeft) movementValue += "A";
+    if (player.controls.moveBackward) movementValue += "S";
+    if (player.controls.moveRight) movementValue += "D";
+    movement.innerHTML = `${movement.innerHTML.split(" ")[0]} ${movementValue}`;
   }
 }
 

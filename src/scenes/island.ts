@@ -42,7 +42,7 @@ export const renderIsland = () => {
   scene.add(llama);
 
   const player = new Player(llama);
-  gameState.players.add(player);
+  gameState.players.push(player);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(1366, 768);
@@ -65,39 +65,39 @@ export const renderIsland = () => {
 };
 
 const handleLlamaMovement = (event: KeyboardEvent) => {
-  gameState.players.values().next().value.controls.moveForward = false;
-  gameState.players.values().next().value.controls.moveBackward = false;
-  gameState.players.values().next().value.controls.moveLeft = false;
-  gameState.players.values().next().value.controls.moveRight = false;
+  gameState.players[0].controls.moveForward = false;
+  gameState.players[0].controls.moveBackward = false;
+  gameState.players[0].controls.moveLeft = false;
+  gameState.players[0].controls.moveRight = false;
 
   switch (event.key) {
     case 'w':
-      gameState.players.values().next().value.controls.moveForward = true;
+      gameState.players[0].controls.moveForward = true;
       break;
     case 's':
-      gameState.players.values().next().value.controls.moveBackward = true;
+      gameState.players[0].controls.moveBackward = true;
       break;
     case 'a':
-      gameState.players.values().next().value.controls.moveLeft = true;
+      gameState.players[0].controls.moveLeft = true;
       break;
     case 'd':
-      gameState.players.values().next().value.controls.moveRight = true;
+      gameState.players[0].controls.moveRight = true;
       break;
   }
 }
 const handleLlamaStop = (event: KeyboardEvent) => {
     switch (event.key) {
         case 'w':
-        gameState.players.values().next().value.controls.moveForward = false;
+        gameState.players[0].controls.moveForward = false;
         break;
         case 's':
-        gameState.players.values().next().value.controls.moveBackward = false;
+        gameState.players[0].controls.moveBackward = false;
         break;
         case 'a':
-        gameState.players.values().next().value.controls.moveLeft = false;
+        gameState.players[0].controls.moveLeft = false;
         break;
         case 'd':
-        gameState.players.values().next().value.controls.moveRight = false;
+        gameState.players[0].controls.moveRight = false;
         break;
     }
 }

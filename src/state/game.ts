@@ -4,7 +4,7 @@ export class GameState {
   private timeLimit: number; // In seconds
   private startTime: number;
   private elapsedTime: number;
-  public players: Set<PlayerState> = new Set<PlayerState>();
+  public players: Array<PlayerState> = new Array<PlayerState>();
 
   constructor(timeLimit: number = 300) {
     this.timeLimit = timeLimit;

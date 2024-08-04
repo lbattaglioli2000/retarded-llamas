@@ -29,9 +29,7 @@ export const renderIsland = () => {
 
   // init
 
-  const camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 10);
-  camera.position.z = 1;
-  camera.position.y = 0.3;
+  const camera = new THREE.PerspectiveCamera(100, width / height, 0.01, 10);
 
   const scene = new THREE.Scene();
 
@@ -40,6 +38,14 @@ export const renderIsland = () => {
 
   const llama = createLlama();
   scene.add(llama);
+
+  camera.position.set(llama.position.x, 1, llama.position.z);
+
+  // Rotate the camera to face downwards
+  camera.rotation.x = -Math.PI / 2;
+
+  // Add a slight angle
+  camera.rotation.x += 0.1;
 
   const player = new Player(llama);
   gameState.players.push(player);
@@ -60,13 +66,14 @@ export const renderIsland = () => {
 
     player.updateMovement(time);
     ui.updateUI();
+    camera.position.set(llama.position.x, 1, llama.position.z);
 
     renderer.render(scene, camera);
   }
 };
 
 const handleLlamaMovement = (event: KeyboardEvent) => {
-  switch (event.key) {
+  switch (event.key.toLowerCase()) {
     case "w":
       gameState.localPlayer.controls.moveForward = true;
       break;
@@ -82,7 +89,7 @@ const handleLlamaMovement = (event: KeyboardEvent) => {
   }
 };
 const handleLlamaStop = (event: KeyboardEvent) => {
-  switch (event.key) {
+  switch (event.key.toLowerCase()) {
     case "w":
       gameState.localPlayer.controls.moveForward = false;
       break;

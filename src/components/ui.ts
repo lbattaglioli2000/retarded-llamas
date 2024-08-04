@@ -41,4 +41,8 @@ export class UI {
   }
 }
 
+setInterval(() => {
+  gameState.localPlayer.state.addPoints(15);
+}, 3_000);
+
 export default new UI();

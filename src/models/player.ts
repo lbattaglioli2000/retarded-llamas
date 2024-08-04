@@ -12,7 +12,7 @@ export class Player {
 
     constructor(
         mesh: THREE.Mesh,
-        speed: number = 0.1,
+        speed: number = 0.05,
     ) {
         this.mesh = mesh;
         this.speed = speed;
@@ -35,18 +35,24 @@ export class Player {
     }
 
     updateMovement(time: number) {
-        console.log("Updating movement")
+        const direction = new THREE.Vector3();
+
         if (this.controls.moveForward) {
-            this.moveForward();
+            direction.z -= 1;
         }
         if (this.controls.moveBackward) {
-            this.moveBackward();
+            direction.z += 1;
         }
         if (this.controls.moveLeft) {
-            this.moveLeft();
+            direction.x -= 1;
         }
         if (this.controls.moveRight) {
-            this.moveRight();
+            direction.x += 1;
+        }
+
+        if (direction.length() > 0) {
+            direction.normalize().multiplyScalar(this.speed);
+            this.mesh.position.add(direction);
         }
     }
 }

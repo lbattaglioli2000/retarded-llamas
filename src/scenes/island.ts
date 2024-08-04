@@ -65,11 +65,6 @@ export const renderIsland = () => {
 };
 
 const handleLlamaMovement = (event: KeyboardEvent) => {
-  gameState.players[0].controls.moveForward = false;
-  gameState.players[0].controls.moveBackward = false;
-  gameState.players[0].controls.moveLeft = false;
-  gameState.players[0].controls.moveRight = false;
-
   switch (event.key) {
     case 'w':
       gameState.players[0].controls.moveForward = true;

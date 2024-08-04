@@ -1,4 +1,4 @@
-import gameState from "../state";
+import { gameState } from "../state";
 
 export class UI {
   elem?: HTMLDivElement;
@@ -19,16 +19,20 @@ export class UI {
   }
 
   updateUI() {
-    const points = this.elem!.childNodes.item(0) as HTMLHeadingElement;
-    const health = this.elem!.childNodes.item(1) as HTMLHeadingElement;
-    const time = this.elem!.childNodes.item(2) as HTMLHeadingElement;
-    const movement = this.elem!.childNodes.item(3) as HTMLHeadingElement;
+    const points = document.getElementById("ui-points") as HTMLHeadingElement;
+    const health = document.getElementById("ui-health") as HTMLHeadingElement;
+    const time = document.getElementById("ui-time") as HTMLHeadingElement;
+    const movement = document.getElementById(
+      "ui-movement",
+    ) as HTMLHeadingElement;
 
     const player = gameState.localPlayer;
 
     points.innerHTML = `${points.innerHTML.split(" ")[0]} ${player.state.getPoints()}`;
-    health.innerHTML = `${health.innerHTML.split(" ")[0]} ${player.state.getHealth()}`;
-    time.innerHTML = `${time.innerHTML.split(" ")[0]} ${player.state.getStateTime()}`;
+    if (points.innerHTML && health.innerHTML && time.innerHTML) {
+      health.innerHTML = `${health.innerHTML.split(" ")[0]} ${player.state.getHealth()}`;
+      time.innerHTML = `${time.innerHTML.split(" ")[0]} ${player.state.getStateTime()}`;
+    }
   }
 }
 

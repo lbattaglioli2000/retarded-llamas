@@ -59,6 +59,7 @@ export const renderIsland = () => {
     // mesh.rotation.z = time / 1000;
 
     player.updateMovement(time);
+    ui.updateUI();
 
     renderer.render(scene, camera);
   }

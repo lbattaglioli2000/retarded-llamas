@@ -1,10 +1,10 @@
-import { PlayerState } from "./player";
+import { Player } from "../models/player";
 
 export class GameState {
   private timeLimit: number; // In seconds
   private startTime: number;
   private elapsedTime: number;
-  public players: Array<PlayerState> = new Array<PlayerState>();
+  public players: Array<Player> = new Array<Player>();
 
   constructor(timeLimit: number = 300) {
     this.timeLimit = timeLimit;

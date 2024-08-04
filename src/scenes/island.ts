@@ -1,13 +1,15 @@
 import * as THREE from "three";
-import {Player} from "../models/player";
-import {GameState} from "../state";
+import { Player } from "../models/player";
+import { GameState } from "../state";
+import { appElem } from "../components/app";
+import ui from "../components/ui";
 
 const createGround = () => {
   const geometry = new THREE.PlaneGeometry(5, 5);
   const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
   const ground = new THREE.Mesh(geometry, material);
 
-  ground.rotation.x = - Math.PI / 2; // This will make the plane horizontal
+  ground.rotation.x = -Math.PI / 2; // This will make the plane horizontal
 
   return ground;
 };
@@ -47,9 +49,9 @@ export const renderIsland = () => {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(1366, 768);
   renderer.setAnimationLoop(animate);
-  // renderer.setSize(width, height);
-  const appElem = document.getElementById("app");
+  renderer.domElement.id = "game-canvas";
   appElem!.appendChild(renderer.domElement);
+  appElem!.appendChild(ui.createUI());
 
   // animation
 
@@ -71,36 +73,36 @@ const handleLlamaMovement = (event: KeyboardEvent) => {
   gameState.players[0].controls.moveRight = false;
 
   switch (event.key) {
-    case 'w':
+    case "w":
       gameState.players[0].controls.moveForward = true;
       break;
-    case 's':
+    case "s":
       gameState.players[0].controls.moveBackward = true;
       break;
-    case 'a':
+    case "a":
       gameState.players[0].controls.moveLeft = true;
       break;
-    case 'd':
+    case "d":
       gameState.players[0].controls.moveRight = true;
       break;
   }
-}
+};
 const handleLlamaStop = (event: KeyboardEvent) => {
-    switch (event.key) {
-        case 'w':
-        gameState.players[0].controls.moveForward = false;
-        break;
-        case 's':
-        gameState.players[0].controls.moveBackward = false;
-        break;
-        case 'a':
-        gameState.players[0].controls.moveLeft = false;
-        break;
-        case 'd':
-        gameState.players[0].controls.moveRight = false;
-        break;
-    }
-}
+  switch (event.key) {
+    case "w":
+      gameState.players[0].controls.moveForward = false;
+      break;
+    case "s":
+      gameState.players[0].controls.moveBackward = false;
+      break;
+    case "a":
+      gameState.players[0].controls.moveLeft = false;
+      break;
+    case "d":
+      gameState.players[0].controls.moveRight = false;
+      break;
+  }
+};
 
-window.addEventListener('keydown', handleLlamaMovement);
-window.addEventListener('keyup', handleLlamaStop);
+window.addEventListener("keydown", handleLlamaMovement);
+window.addEventListener("keyup", handleLlamaStop);

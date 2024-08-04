@@ -1,5 +1,13 @@
+@font-face {
+  font-family: "RobotoMono";
+  src: url("fonts/RobotoMono-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: RobotoMono, Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -29,4 +37,8 @@ body {
   width: 100vw;
   align-items: center;
   justify-content: center;
+}
+
+#app {
+  position: relative;
 }

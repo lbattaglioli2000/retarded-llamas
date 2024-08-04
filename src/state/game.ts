@@ -12,6 +12,10 @@ export class GameState {
     this.elapsedTime = 0;
   }
 
+  get localPlayer() {
+    return this.players[0];
+  }
+
   // Update the elapsed time
   public updateElapsedTime(): void {
     this.elapsedTime = (Date.now() - this.startTime) / 1000;

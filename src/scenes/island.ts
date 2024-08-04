@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { Player } from "../models/player";
-import { GameState } from "../state";
+import { gameState } from "../state";
 import { appElem } from "../components/app";
 import ui from "../components/ui";
 
@@ -22,8 +22,6 @@ const createLlama = () => {
   llama.position.set(0, 0.1, 0); // Set initial position
   return llama;
 };
-
-const gameState = new GameState();
 
 export const renderIsland = () => {
   const width = window.innerWidth,
